@@ -13,7 +13,7 @@ public class PlayerBehaviour : MonoBehaviour
     public GameObject fourth_shot;
     public float bulletSpeed = 50f;
     public double shot;
-    public GameBehavior gameManager;
+    //public GameBehavior gameManager;
 
     private float vInput;
     private float hInput;
@@ -22,13 +22,14 @@ public class PlayerBehaviour : MonoBehaviour
     private double bulletDelay = 0.1;
     private double timeShot = 0.0;
     private int bulletCounter = 0;
+    private GameBehavior _gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
         _col = GetComponent<CapsuleCollider>();
-        gameManager = GameObject.Find("GameManager").GetComponent<GameBehavior>();
+        _gameManager = GameObject.Find("GameManager").GetComponent<GameBehavior>();
 
     }
 
@@ -53,16 +54,16 @@ public class PlayerBehaviour : MonoBehaviour
         }
 
 
-        if ((Input.GetMouseButtonDown(0) && gameManager.Tracer_Pickup == false) || (Input.GetMouseButton(0) && gameManager.Tracer_Pickup == true && Time.timeAsDouble > timeShot + bulletDelay))
+        if ((Input.GetMouseButtonDown(0) && _gameManager.Tracer_Pickup == false) || (Input.GetMouseButton(0) && _gameManager.Tracer_Pickup == true && Time.timeAsDouble > timeShot + bulletDelay))
         {
             
-            if (bulletCounter >= 3 && gameManager.Four_Pickup)
+            if (bulletCounter >= 3 && _gameManager.Four_Pickup)
             {
                 GameObject newBullet3 = Instantiate(fourth_shot, this.transform.position + this.transform.rotation * new Vector3(1, 0, 1), this.transform.rotation) as GameObject;
                 Rigidbody bulletRB3 = newBullet3.GetComponent<Rigidbody>();
                 bulletRB3.velocity = this.transform.forward * bulletSpeed * 4f;
                 bulletCounter = 0;
-                if (gameManager.Tracer_Pickup) 
+                if (_gameManager.Tracer_Pickup) 
                 {
                     GameObject newBullet4 = Instantiate(fourth_shot, this.transform.position + this.transform.rotation * new Vector3(-1, 0, 1), this.transform.rotation) as GameObject;
                     Rigidbody bulletRB4 = newBullet4.GetComponent<Rigidbody>();
@@ -73,7 +74,7 @@ public class PlayerBehaviour : MonoBehaviour
             else
             {
                 bulletCounter++;
-                if (gameManager.Tracer_Pickup)
+                if (_gameManager.Tracer_Pickup)
                 {
                     GameObject newBullet2 = Instantiate(bullet, this.transform.position + this.transform.rotation * new Vector3(-1, 0, 1), this.transform.rotation) as GameObject;
                     Rigidbody bulletRB2 = newBullet2.GetComponent<Rigidbody>();
@@ -110,5 +111,15 @@ public class PlayerBehaviour : MonoBehaviour
         bool grounded = Physics.CheckCapsule(_col.bounds.center, capsuleBottom, distanceToGround, groundLayer, QueryTriggerInteraction.Ignore);
 
         return grounded;
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name == "Enemy")
+        {
+
+            _gameManager.HP -= 1;
+
+        }
     }
 }
