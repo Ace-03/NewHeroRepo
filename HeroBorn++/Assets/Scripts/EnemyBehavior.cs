@@ -12,7 +12,7 @@ public class EnemyBehavior : MonoBehaviour
 
     private int locationIndex = 0;
     private NavMeshAgent agent;
-    private int _lives = 3;
+    private int _lives = 20;
     public int EnemyLives
     {
         get { return _lives; }
@@ -90,6 +90,19 @@ public class EnemyBehavior : MonoBehaviour
         if (collision.gameObject.name == "Bullet(Clone)")
         {
             EnemyLives -= 1;
+            Debug.Log("Critial hit!");
+        }
+
+        if (collision.gameObject.name == "fourth_shot(Clone)")
+        {
+            if (_lives >= 10) {
+                EnemyLives -= (4 + ((20 - _lives )/2));
+            } 
+            else 
+            {
+                EnemyLives -= (4 + ((20 - 10 )/2));
+            }
+            
             Debug.Log("Critial hit!");
         }
     }
