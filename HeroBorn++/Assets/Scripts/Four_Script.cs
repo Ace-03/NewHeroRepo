@@ -18,8 +18,8 @@ public class Four_Script : MonoBehaviour
             Destroy(this.transform.parent.gameObject);
             Debug.Log("Item collected!");
             gameManager.Items += 1;
+            gameManager.numPickups++;
             gameManager.Four_Pickup = true;
-
         }
     }
 }

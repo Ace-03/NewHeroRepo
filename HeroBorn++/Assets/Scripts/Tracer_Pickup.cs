@@ -18,8 +18,8 @@ public class Tracer_Pickup : MonoBehaviour
             Destroy(this.transform.parent.gameObject);
             Debug.Log("Item collected!");
             gameManager.Items += 1;
+            gameManager.numPickups++;
             gameManager.Tracer_Pickup = true;
-
         }
     }
 }

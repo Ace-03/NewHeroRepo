@@ -986,7 +986,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d7f81a2b5939b447976ed21f98fd370, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camOffest: {x: 0, y: 1.2, z: -2.6}
+  camOffest: {x: 0, y: 0, z: -0.25}
+--- !u!1 &1084066102
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1084066103}
+  m_Layer: 0
+  m_Name: Camera_Focus
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1084066103
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1084066102}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1843247455}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1098129154
 GameObject:
   m_ObjectHideFlags: 0
@@ -2082,7 +2113,7 @@ MonoBehaviour:
     m_Bits: 64
   bullet: {fileID: 6063971760799361149, guid: 31db1042e6a974342b770e0145eddf91, type: 3}
   fourth_shot: {fileID: 6350239129798008359, guid: b9d87dfd1c1184a48a7fee4a452f151d, type: 3}
-  bulletSpeed: 50
+  bulletSpeed: 100
   shot: 0
 --- !u!136 &1843247452
 CapsuleCollider:
@@ -2159,7 +2190,8 @@ Transform:
   m_LocalPosition: {x: 1, y: 1, z: 6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1084066103}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -14,15 +14,43 @@ public class GameBehavior : MonoBehaviour
     private bool tracer;
     public bool Tracer_Pickup
     {
-        get { return tracer ; }
-        set { tracer = value; }
+        get { return tracer; }
+        set 
+        {   
+            tracer = value;
+            tracerPower = numPickups;        
+        }
     }
 
     private bool four;
     public bool Four_Pickup
     {
         get { return four; }
-        set { four = value; }
+        set 
+        { 
+            four = value;
+            fourPower = numPickups;
+        }
+    }
+
+    private int numPowerups = 0;
+    public int numPickups
+    {
+        get {return numPowerups; }
+        set { numPowerups = value; }
+        
+    }
+
+    private int tracerPower = -1;
+    public int tracerID
+    {
+        get { return tracerPower; }
+    }
+
+    private int fourPower = -1;
+    public int fourID
+    { 
+        get { return fourPower; }
     }
 
     public string labelText = "Collect all 4 items and win your freedom";
@@ -106,7 +134,8 @@ public class GameBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
