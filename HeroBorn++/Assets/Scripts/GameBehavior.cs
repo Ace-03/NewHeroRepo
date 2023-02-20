@@ -129,6 +129,8 @@ public class GameBehavior : MonoBehaviour
                 restartGame();
             }
         }
+
+
     }
 
     // Start is called before the first frame update

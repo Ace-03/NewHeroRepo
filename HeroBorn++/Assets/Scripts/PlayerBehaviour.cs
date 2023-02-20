@@ -92,7 +92,7 @@ public class PlayerBehaviour : MonoBehaviour
             {
                 GameObject newBullet3 = Instantiate(fourth_shot, this.transform.position + this.transform.rotation * new Vector3(1, 0, 1), this.transform.rotation) as GameObject;
                 Rigidbody bulletRB3 = newBullet3.GetComponent<Rigidbody>();
-                bulletRB3.velocity = this.transform.forward * bulletSpeed * 4f;
+                bulletRB3.velocity = this.transform.forward * bulletSpeed * 4f - this.transform.right * 2f;
                 Debug.Log("FOUR!");
                 bulletCounter = 0;
 
