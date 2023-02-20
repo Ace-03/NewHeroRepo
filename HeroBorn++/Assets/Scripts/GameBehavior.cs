@@ -11,7 +11,49 @@ public class GameBehavior : MonoBehaviour
     private int _itemsCollected = 0;
     private int _playerHP = 10;
 
-    private bool tracer;
+
+    private int jump_pad_num = 0;
+    public int jump_pad_count
+    {
+        get { return jump_pad_num; }
+        set 
+        { 
+            jump_pad_num = value;
+            if (jump_pad_num > 3)
+            {
+                int i = 0;
+                for (i = 1; i <= jump_pad_num - 3; ++i) 
+                {
+                    Destroy(GameObject.Find("jump_pad(Clone)"));
+                
+                }
+            }
+        }
+    }
+
+    private bool firegun = false;
+    public bool Firegun_Pickup
+    {
+        get { return firegun; }
+        set 
+        {
+            firegun = value;
+            FiregunPower = numPickups;
+        }
+    }
+
+    private bool jump_pad = false;
+    public bool Jump_Pad_Pickup 
+    { 
+        get { return jump_pad; }
+        set
+        {
+            jump_pad = value;
+            JumpPadPower = numPickups;
+        }
+    }
+
+    private bool tracer = false;
     public bool Tracer_Pickup
     {
         get { return tracer; }
@@ -22,7 +64,7 @@ public class GameBehavior : MonoBehaviour
         }
     }
 
-    private bool four;
+    private bool four = false;
     public bool Four_Pickup
     {
         get { return four; }
@@ -39,6 +81,18 @@ public class GameBehavior : MonoBehaviour
         get {return numPowerups; }
         set { numPowerups = value; }
         
+    }
+
+    private int FiregunPower = -1;
+    public int FiregunID 
+    {
+        get { return FiregunPower; }
+    }
+
+    private int JumpPadPower = -1;
+    public int JumpPadID 
+    { 
+        get { return JumpPadPower; }
     }
 
     private int tracerPower = -1;
@@ -116,6 +170,8 @@ public class GameBehavior : MonoBehaviour
 
         if (showWinScreen)
         {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
             if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 50, 200, 100), "YOU WON!"))
             {
                 restartGame();
@@ -124,6 +180,8 @@ public class GameBehavior : MonoBehaviour
 
         if (showLossScreen)
         {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
             if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 50, 200, 100), "YOU LOSE..."))
             {
                 restartGame();

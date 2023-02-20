@@ -16,7 +16,7 @@ public class EnemyBehavior : MonoBehaviour
     public int EnemyLives
     {
         get { return _lives; }
-        private set
+        set
         {
             _lives = value;
             if (_lives <= 0)
@@ -87,7 +87,7 @@ public class EnemyBehavior : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name == "Bullet(Clone)")
+        if (collision.gameObject.name == "Bullet(Clone)" || collision.gameObject.name == "fire")
         {
             EnemyLives -= 1;
             Debug.Log("Critial hit!");

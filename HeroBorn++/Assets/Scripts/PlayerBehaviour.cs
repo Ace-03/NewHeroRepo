@@ -13,6 +13,7 @@ public class PlayerBehaviour : MonoBehaviour
     public GameObject fourth_shot;
     public float bulletSpeed = 75f;
     public double shot;
+    public float jumpMod = 1f;
     //public GameBehavior gameManager;
 
     private float vInput;
@@ -28,6 +29,10 @@ public class PlayerBehaviour : MonoBehaviour
     public GameObject tracer_guns;
     public GameObject four_gun;
     public GameObject base_gun;
+    public GameObject jump_pad;
+    public GameObject jump_pad_sml;
+    public GameObject firegun;
+    public GameObject fire;
 
     // Start is called before the first frame update
     void Start()
@@ -35,14 +40,10 @@ public class PlayerBehaviour : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
         _col = GetComponent<CapsuleCollider>();
         _gameManager = GameObject.Find("GameManager").GetComponent<GameBehavior>();
-        //tracer_guns = GameObject.Find("tracer_guns");
-        //four_gun = GameObject.Find("four_guns");
-        //base_gun = GameObject.Find("base_gun");
     }
     // Update is called once per frame
     void Update()
     {
-
         vInput = Input.GetAxis("Vertical") * moveSpeed;
         hInput = Input.GetAxis("Horizontal") * rotateSpeed;
         /*
@@ -57,6 +58,8 @@ public class PlayerBehaviour : MonoBehaviour
         else if (gunSelect < 0)
             gunSelect = _gameManager.numPickups;
         
+
+
         if (gunSelect == _gameManager.tracerID)
             tracer_guns.SetActive(true);
         else
@@ -67,10 +70,23 @@ public class PlayerBehaviour : MonoBehaviour
         else
             four_gun.SetActive(false);
 
+        if (gunSelect == _gameManager.JumpPadID)
+            jump_pad.SetActive(true);
+        else
+            jump_pad.SetActive(false);
+
+        if (gunSelect == _gameManager.FiregunID)
+            firegun.SetActive(true);
+        else
+            firegun.SetActive(false);
+          
         if (gunSelect == 0)
             base_gun.SetActive(true);
         else
             base_gun.SetActive(false);
+
+
+
 
         if (Input.GetKey(KeyCode.A))
             sInput = -1f * moveSpeed;
@@ -81,9 +97,20 @@ public class PlayerBehaviour : MonoBehaviour
 
         if (IsGrounded() && Input.GetKeyDown(KeyCode.Space))
         {
-            _rb.AddForce(Vector3.up * jumpVelociy, ForceMode.Impulse);
+            _rb.AddForce(Vector3.up * jumpVelociy * jumpMod, ForceMode.Impulse);
         }
 
+        if (Input.GetMouseButtonDown(0) && gunSelect == _gameManager.JumpPadID)
+        { 
+            GameObject newJumpPad = Instantiate((jump_pad_sml), this.transform.position + this.transform.rotation * new Vector3(1, 0, 2), this.transform.rotation) as GameObject;
+            Rigidbody JumpPadRB = newJumpPad.GetComponent<Rigidbody>();
+            JumpPadRB.velocity = this.transform.forward * (moveSpeed + .5f) - this.transform.right * 2f;
+        }
+
+        if (Input.GetMouseButton(0) && gunSelect == _gameManager.FiregunID)
+            fire.SetActive(true);
+        else
+            fire.SetActive(false);
 
 
         if ((Input.GetMouseButtonDown(0) && gunSelect == 0) || (Input.GetMouseButton(0) && gunSelect == _gameManager.tracerID && Time.timeAsDouble > timeShot + bulletDelay) || (Input.GetMouseButtonDown(0) && gunSelect == _gameManager.fourID))
@@ -117,25 +144,17 @@ public class PlayerBehaviour : MonoBehaviour
 
     void FixedUpdate()
     {
-
-           
-
         Vector3 rotation = Vector3.up * hInput;
         Quaternion angleRot = Quaternion.Euler(rotation * Time.fixedDeltaTime);
 
         _rb.MovePosition(this.transform.position + this.transform.forward * vInput * Time.fixedDeltaTime + (this.transform.right * sInput * Time.fixedDeltaTime));
         _rb.MoveRotation(_rb.rotation * angleRot);
-
-        
     }
 
     private bool IsGrounded()
     {
-
         Vector3 capsuleBottom = new Vector3(_col.bounds.center.x, _col.bounds.min.y, _col.bounds.center.z);
-
         bool grounded = Physics.CheckCapsule(_col.bounds.center, capsuleBottom, distanceToGround, groundLayer, QueryTriggerInteraction.Ignore);
-
         return grounded;
     }
 
@@ -143,9 +162,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (collision.gameObject.name == "Enemy" || collision.gameObject.name == "Enemy_1" || collision.gameObject.name == "Enemy_2" || collision.gameObject.name == "Enemy_3" || collision.gameObject.name == "Enemy_4")
         {
-
             _gameManager.HP -= 1;
-
         }
     }
 }
