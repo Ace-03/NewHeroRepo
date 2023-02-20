@@ -5204,6 +5204,7 @@ Transform:
   - {fileID: 1633253631}
   - {fileID: 2098261284}
   - {fileID: 1857161036}
+  - {fileID: 477698326}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10375,6 +10376,88 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
+--- !u!1001 &477698325
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 2
+    m_TransformParent: {fileID: 383827474}
+    m_Modifications:
+    - target: {fileID: 1908153420149344502, guid: 375856849dbce4346b90cbda2dadd7a9, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1908153420149344502, guid: 375856849dbce4346b90cbda2dadd7a9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.735018
+      objectReference: {fileID: 0}
+    - target: {fileID: 1908153420149344502, guid: 375856849dbce4346b90cbda2dadd7a9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 11.97182
+      objectReference: {fileID: 0}
+    - target: {fileID: 1908153420149344502, guid: 375856849dbce4346b90cbda2dadd7a9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.5450003
+      objectReference: {fileID: 0}
+    - target: {fileID: 1908153420149344502, guid: 375856849dbce4346b90cbda2dadd7a9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1908153420149344502, guid: 375856849dbce4346b90cbda2dadd7a9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1908153420149344502, guid: 375856849dbce4346b90cbda2dadd7a9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1908153420149344502, guid: 375856849dbce4346b90cbda2dadd7a9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1908153420149344502, guid: 375856849dbce4346b90cbda2dadd7a9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1908153420149344502, guid: 375856849dbce4346b90cbda2dadd7a9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1908153420149344502, guid: 375856849dbce4346b90cbda2dadd7a9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6668633180255370900, guid: 375856849dbce4346b90cbda2dadd7a9, type: 3}
+      propertyPath: m_Name
+      value: Capsule
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_AddedGameObjects: []
+  m_SourcePrefab: {fileID: 100100000, guid: 375856849dbce4346b90cbda2dadd7a9, type: 3}
+--- !u!4 &477698326 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1908153420149344502, guid: 375856849dbce4346b90cbda2dadd7a9, type: 3}
+  m_PrefabInstance: {fileID: 477698325}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &477698327 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 75524926216776366, guid: 375856849dbce4346b90cbda2dadd7a9, type: 3}
+  m_PrefabInstance: {fileID: 477698325}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &477698328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477698327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7894a6994e89cf04cbfcf551ba5bf311, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
 --- !u!1 &490428907
 GameObject:
   m_ObjectHideFlags: 0
@@ -10864,8 +10947,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   showWinScreen: 0
   showLossScreen: 0
-  labelText: Collect all 4 items and win your freedom
-  maxItems: 4
+  labelText: Collect all 5 items and win your freedom
+  maxItems: 5
 --- !u!4 &866224300
 Transform:
   m_ObjectHideFlags: 0

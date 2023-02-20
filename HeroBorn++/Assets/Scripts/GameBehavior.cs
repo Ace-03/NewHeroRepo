@@ -107,8 +107,8 @@ public class GameBehavior : MonoBehaviour
         get { return fourPower; }
     }
 
-    public string labelText = "Collect all 4 items and win your freedom";
-    public int maxItems = 4;
+    public string labelText = "Collect all 5 items and win your freedom";
+    public int maxItems = 5;
 
     public int Items
     { 
