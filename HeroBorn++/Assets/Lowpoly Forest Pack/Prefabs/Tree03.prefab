@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c87463eec3dbd4e92e99ec6881a85a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeOnFire: 0
+  onFire: 0
   FirePS: {fileID: 3562469806692060306, guid: b95c0bae9af8e184bbc2d0405b3ec966, type: 3}
 --- !u!1 &1730044595293934
 GameObject:

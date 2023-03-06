@@ -6476,7 +6476,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &433128770
 Transform:
   m_ObjectHideFlags: 0
@@ -6598,7 +6598,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4216095242474487716, guid: baf8079c4d3713b469e9a8490c00752c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5974558383374544776, guid: baf8079c4d3713b469e9a8490c00752c, type: 3}
       propertyPath: m_RootOrder
@@ -6789,6 +6789,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4316499662004486, guid: 415b8efaaafe2894d8b83242001cc681, type: 3}
   m_PrefabInstance: {fileID: 469503805}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &472413777 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8371798658756033426, guid: 64ad6ea859daa92468e46e23e45da783, type: 3}
+  m_PrefabInstance: {fileID: 5730152834416515821}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &472413781
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472413777}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 20.296629
+  m_Height: 27.560488
+  m_Direction: 1
+  m_Center: {x: 0, y: 14.966306, z: -0.10499286}
 --- !u!1001 &477698325
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6892,7 +6911,7 @@ GameObject:
   - component: {fileID: 490428908}
   - component: {fileID: 490428911}
   - component: {fileID: 490428910}
-  - component: {fileID: 490428909}
+  - component: {fileID: 490428913}
   - component: {fileID: 490428912}
   m_Layer: 0
   m_Name: fire
@@ -6917,20 +6936,6 @@ Transform:
   m_Father: {fileID: 3889854162762343367}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!136 &490428909
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 490428907}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!23 &490428910
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6993,7 +6998,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7b70b460e24431458b724decf18eb09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemy: {fileID: 0}
+  flammable: {fileID: 0}
+--- !u!136 &490428913
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490428907}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.50000024
+  m_Height: 2.0000005
+  m_Direction: 1
+  m_Center: {x: 0.00000029802322, y: 0, z: -0.00000008940699}
 --- !u!1001 &499680376
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12296,6 +12315,25 @@ Transform:
   m_Father: {fileID: 1158758000}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1576560210 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 98791aa43884f864e8efd816a7841eac, type: 3}
+  m_PrefabInstance: {fileID: 1167239850}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &1576560212
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1576560210}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1001 &1589642963
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12589,7 +12627,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4d89e34e84f382043b332769402f1b3c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -19063,7 +19101,7 @@ GameObject:
   - component: {fileID: 1959349065}
   - component: {fileID: 1959349064}
   m_Layer: 0
-  m_Name: MinmapCam
+  m_Name: MinimapCam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

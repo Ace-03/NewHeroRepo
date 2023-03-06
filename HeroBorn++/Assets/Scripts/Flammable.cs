@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Flammable : MonoBehaviour
 {
-    private double timeOnFire;
-    private bool onFire = false;
+    public double timeOnFire;
+    public bool onFire = false;
     public GameObject FirePS;
     void Start()
     {
@@ -19,16 +19,10 @@ public class Flammable : MonoBehaviour
         {
             Debug.Log("burning");
             onFire = true;
-            Instantiate(FirePS, this.transform.position,this.transform.rotation);
+            GameObject flame = Instantiate(FirePS, this.transform.position,this.transform.rotation) as GameObject;
+            flame.transform.parent = this.transform;
         }
     }
 
-    private void OnCollisionStay(Collision collision)
-    {
-        if (collision.gameObject.name == "fire")
-        {
-            Debug.Log("AAAAA");
-            timeOnFire += Time.deltaTime;
-        }
-    }
+
 }
