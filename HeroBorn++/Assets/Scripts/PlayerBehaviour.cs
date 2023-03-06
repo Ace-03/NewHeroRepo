@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerBehaviour : MonoBehaviour
 {
     public float moveSpeed = 10f;
+    public float moveMultiplier = 1;
     public float rotateSpeed = 75f;
     public float jumpVelociy = 5f;
     public float distanceToGround = 0.1f;
@@ -14,6 +15,14 @@ public class PlayerBehaviour : MonoBehaviour
     public float bulletSpeed = 75f;
     public double shot;
     public float jumpMod = 1f;
+    public GameObject tracer_guns;
+    public GameObject four_gun;
+    public GameObject base_gun;
+    public GameObject jump_pad;
+    public GameObject jump_pad_sml;
+    public GameObject firegun;
+    public GameObject fire;
+    public GameObject camera;
     //public GameBehavior gameManager;
 
     private float vInput;
@@ -26,13 +35,7 @@ public class PlayerBehaviour : MonoBehaviour
     private GameBehavior _gameManager;
     private float sInput;
     private int gunSelect = 1;
-    public GameObject tracer_guns;
-    public GameObject four_gun;
-    public GameObject base_gun;
-    public GameObject jump_pad;
-    public GameObject jump_pad_sml;
-    public GameObject firegun;
-    public GameObject fire;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -40,11 +43,12 @@ public class PlayerBehaviour : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
         _col = GetComponent<CapsuleCollider>();
         _gameManager = GameObject.Find("GameManager").GetComponent<GameBehavior>();
+        camera = GameObject.Find("Main Camera");
     }
     // Update is called once per frame
     void Update()
     {
-        vInput = Input.GetAxis("Vertical") * moveSpeed;
+        
         hInput = Input.GetAxis("Horizontal") * rotateSpeed;
         /*
         this.transform.Translate(Vector3.forward * vInput * Time.deltaTime);
@@ -95,6 +99,17 @@ public class PlayerBehaviour : MonoBehaviour
         else
             sInput = 0;
 
+        if (Input.GetKey(KeyCode.W))
+            vInput = 1f * moveSpeed;
+        else if (Input.GetKey(KeyCode.S))
+            vInput = -1f * moveSpeed;
+        else
+            vInput = 0;
+
+        Vector3 rotation = Vector3.up * hInput;
+        Quaternion angleRot = Quaternion.Euler(rotation * Time.fixedDeltaTime);
+        _rb.MoveRotation(_rb.rotation * angleRot);  
+
         if (IsGrounded() && Input.GetKeyDown(KeyCode.Space))
         {
             _rb.AddForce(Vector3.up * jumpVelociy * jumpMod, ForceMode.Impulse);
@@ -102,9 +117,9 @@ public class PlayerBehaviour : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && gunSelect == _gameManager.JumpPadID)
         { 
-            GameObject newJumpPad = Instantiate((jump_pad_sml), this.transform.position + this.transform.rotation * new Vector3(1, 0, 2), this.transform.rotation) as GameObject;
+            GameObject newJumpPad = Instantiate((jump_pad_sml), camera.transform.position + camera.transform.rotation * new Vector3(1, 0, 2), this.transform.rotation) as GameObject;
             Rigidbody JumpPadRB = newJumpPad.GetComponent<Rigidbody>();
-            JumpPadRB.velocity = this.transform.forward * (moveSpeed + .5f) - this.transform.right * 2f;
+            JumpPadRB.velocity = camera .transform.forward * (moveSpeed + .5f) - camera.transform.right * 2f;
         }
 
         if (Input.GetMouseButton(0) && gunSelect == _gameManager.FiregunID)
@@ -117,25 +132,26 @@ public class PlayerBehaviour : MonoBehaviour
         {
             if (bulletCounter >= 3 && gunSelect == _gameManager.fourID)
             {
-                GameObject newBullet3 = Instantiate(fourth_shot, this.transform.position + this.transform.rotation * new Vector3(1, 0, 1), this.transform.rotation) as GameObject;
+                GameObject newBullet3 = Instantiate(fourth_shot, camera.transform.position + camera.transform.rotation * new Vector3(1, -0.15f, 1), this.transform.rotation) as GameObject;
                 Rigidbody bulletRB3 = newBullet3.GetComponent<Rigidbody>();
-                bulletRB3.velocity = this.transform.forward * bulletSpeed * 4f - this.transform.right * 2f;
+                bulletRB3.velocity = camera.transform.forward * bulletSpeed * 4f - camera.transform.right * 2f;
                 Debug.Log("FOUR!");
                 bulletCounter = 0;
 
             }
             else
             {
-                GameObject newBullet = Instantiate(bullet, this.transform.position + this.transform.rotation * new Vector3(1, 0, 1), this.transform.rotation) as GameObject;
+                //Base Gun Firing
+                GameObject newBullet = Instantiate(bullet, camera.transform.position + camera.transform.rotation * new Vector3(1, -0.15f, 1), this.transform.rotation) as GameObject;
                 Rigidbody bulletRB = newBullet.GetComponent<Rigidbody>();
-                bulletRB.velocity = this.transform.forward * bulletSpeed - this.transform.right * 2f;
+                bulletRB.velocity = camera.transform.forward * bulletSpeed - camera.transform.right * 2f;
                 timeShot = Time.timeAsDouble;
                 bulletCounter++;
                 if (gunSelect == _gameManager.tracerID)
                 {
-                    GameObject newBullet2 = Instantiate(bullet, this.transform.position + this.transform.rotation * new Vector3(-1, 0, 1), this.transform.rotation) as GameObject;
+                    GameObject newBullet2 = Instantiate(bullet, camera.transform.position + camera.transform.rotation * new Vector3(-1, -0.15f, 1), camera.transform.rotation) as GameObject;
                     Rigidbody bulletRB2 = newBullet2.GetComponent<Rigidbody>();
-                    bulletRB2.velocity = this.transform.forward * bulletSpeed + this.transform.right * 2f;
+                    bulletRB2.velocity = camera.transform.forward * bulletSpeed + camera.transform.right * 2f;
                 }
 
             }
@@ -144,11 +160,9 @@ public class PlayerBehaviour : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector3 rotation = Vector3.up * hInput;
-        Quaternion angleRot = Quaternion.Euler(rotation * Time.fixedDeltaTime);
+              
+        _rb.MovePosition(this.transform.position + this.transform.forward * vInput * moveMultiplier * Time.fixedDeltaTime + (this.transform.right * sInput * Time.fixedDeltaTime));
 
-        _rb.MovePosition(this.transform.position + this.transform.forward * vInput * Time.fixedDeltaTime + (this.transform.right * sInput * Time.fixedDeltaTime));
-        _rb.MoveRotation(_rb.rotation * angleRot);
     }
 
     private bool IsGrounded()
