@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -168,14 +166,16 @@ public class GameBehavior : MonoBehaviour
         GUI.Box(new Rect(20, 50, 150, 25), "Items Collected: " + _itemsCollected);
         GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height - 50, 300, 50), labelText);
 
+
         if (showWinScreen)
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
             if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 50, 200, 100), "YOU WON!"))
             {
-                restartGame();
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }
+
         }
 
         if (showLossScreen)
@@ -184,7 +184,7 @@ public class GameBehavior : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 50, 200, 100), "YOU LOSE..."))
             {
-                restartGame();
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
             }
         }
 
