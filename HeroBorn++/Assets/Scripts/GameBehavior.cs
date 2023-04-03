@@ -171,21 +171,26 @@ public class GameBehavior : MonoBehaviour
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            /*
             if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 50, 200, 100), "YOU WON!"))
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }
-
+            */
         }
 
         if (showLossScreen)
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+            /*
             if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 50, 200, 100), "YOU LOSE..."))
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
             }
+            */
         }
 
 
