@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
+    [SerializeField] AudioClip[] _clips;
+
     public float moveSpeed = 10f;
     public float moveMultiplier = 1;
     public float rotateSpeed = 75f;
@@ -144,6 +146,10 @@ public class PlayerBehaviour : MonoBehaviour
                 //Base Gun Firing
                 GameObject newBullet = Instantiate(bullet, camera.transform.position + camera.transform.rotation * new Vector3(1, -0.15f, 1), this.transform.rotation) as GameObject;
                 Rigidbody bulletRB = newBullet.GetComponent<Rigidbody>();
+                int index = UnityEngine.Random.Range(0, _clips.Length);
+                AudioClip clip = _clips[index];
+                GetComponent<AudioSource>().PlayOneShot(clip);
+                Debug.Log("Bullet");
                 bulletRB.velocity = camera.transform.forward * bulletSpeed - camera.transform.right * 2f;
                 timeShot = Time.timeAsDouble;
                 bulletCounter++;

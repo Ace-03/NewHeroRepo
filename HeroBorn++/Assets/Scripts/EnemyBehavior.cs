@@ -90,6 +90,9 @@ public class EnemyBehavior : MonoBehaviour
         if (collision.gameObject.name == "Bullet(Clone)" || collision.gameObject.name == "fire")
         {
             EnemyLives -= 1;
+
+            var audioSource = GetComponent<AudioSource>();
+            audioSource.Play();
             Debug.Log("Critial hit!");
         }
 
@@ -102,7 +105,9 @@ public class EnemyBehavior : MonoBehaviour
             {
                 EnemyLives -= (4 + ((20 - 10 )/2));
             }
-            
+
+            var audioSource = GetComponent<AudioSource>();
+            audioSource.Play();
             Debug.Log("Critial hit!");
         }
     }
